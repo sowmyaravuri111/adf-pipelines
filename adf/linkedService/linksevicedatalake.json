@@ -1,0 +1,12 @@
+{
+	"name": "linksevicedatalake",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobFS",
+		"typeProperties": {
+			"url": "https://datafactoryraaga.dfs.core.windows.net/",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQDE4RTFBRUVFLUIzOTYtNEFEOC05OUE4LUY2OUQ4Q0UzQkVGQ19iNTcyZDdiYi1iNDRmLTRiZjYtODdmMi04OWExMGUyMzhjMmMiDQp9"
+		}
+	}
+}
