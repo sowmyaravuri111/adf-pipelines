@@ -218,6 +218,10 @@
 										"storeSettings": {
 											"type": "AzureBlobFSReadSettings",
 											"recursive": true,
+											"modifiedDatetimeStart": {
+												"value": "@variables('max_value')",
+												"type": "Expression"
+											},
 											"enablePartitionDiscovery": false
 										},
 										"formatSettings": {
@@ -239,7 +243,7 @@
 									"userProperties": [],
 									"typeProperties": {
 										"expression": {
-											"value": "@less(formatDateTime(variables('temp_max_value'),'yyyyMMddHHmmss'),formatDateTime(activity('Get Metadata 2').output.lastModified,'yyyyMMddHHmmss'))",
+											"value": "@less(formatDateTime(\n  variables('temp_max_value'),'yyyMMddHHmmss'),\n  formatDateTime(activity('Get Metadata 2').output.lastModified, 'yyyyMMddHHmmss')\n)\n",
 											"type": "Expression"
 										},
 										"ifTrueActivities": [
@@ -375,11 +379,11 @@
 				"variables": {
 					"temp_max_value": {
 						"type": "String",
-						"defaultValue": "20250620032821"
+						"defaultValue": "2000-06-20T03:28:21Z"
 					},
 					"max_value": {
 						"type": "String",
-						"defaultValue": "20250620032821"
+						"defaultValue": "2000-06-20T03:28:21Z"
 					}
 				},
 				"annotations": []
@@ -449,7 +453,7 @@
 						"typeProperties": {
 							"variableName": "v_temp",
 							"value": {
-								"value": "@formatDateTime(activity('GET METADATA').output.LastModified,'yyyyMMddHHmmss')",
+								"value": "@activity('Get Metadata').output.lastModified",
 								"type": "Expression"
 							}
 						}
