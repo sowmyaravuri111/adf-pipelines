@@ -1,0 +1,71 @@
+{
+	"name": "pipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "Get Metadata",
+				"type": "GetMetadata",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "ds_file_level",
+						"type": "DatasetReference",
+						"parameters": {
+							"p_container": "source",
+							"p_folder": "raw_gold_data",
+							"p_file": "Gold_reserves_tonnes.csv"
+						}
+					},
+					"fieldList": [
+						"lastModified"
+					],
+					"storeSettings": {
+						"type": "AzureBlobFSReadSettings",
+						"enablePartitionDiscovery": false
+					},
+					"formatSettings": {
+						"type": "DelimitedTextReadSettings"
+					}
+				}
+			},
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Get Metadata",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "v_temp",
+					"value": {
+						"value": "@formatDateTime(activity('GET METADATA').output.LastModified,'yyyyMMddHHmmss')",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"variables": {
+			"v_temp": {
+				"type": "String"
+			}
+		},
+		"annotations": []
+	}
+}
