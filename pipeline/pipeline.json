@@ -29,6 +29,7 @@
 					],
 					"storeSettings": {
 						"type": "AzureBlobFSReadSettings",
+						"recursive": true,
 						"enablePartitionDiscovery": false
 					},
 					"formatSettings": {
@@ -55,7 +56,7 @@
 				"typeProperties": {
 					"variableName": "v_temp",
 					"value": {
-						"value": "@formatDateTime(activity('GET METADATA').output.LastModified,'yyyyMMddHHmmss')",
+						"value": "@activity('Get Metadata').output.lastModified",
 						"type": "Expression"
 					}
 				}
