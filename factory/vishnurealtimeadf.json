@@ -1,0 +1,9 @@
+{
+	"name": "vishnurealtimeadf",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "5acccd88-5c75-445f-a60c-825d425aa63b",
+		"tenantId": "e4f1ee3d-678b-4110-b58a-18b6eb1c7bde"
+	}
+}
